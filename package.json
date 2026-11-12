@@ -1,0 +1,26 @@
+{
+  "name": "aggregator",
+  "version": "1.0.0",
+  "description": "This project is focused in a RSS feed aggregator in TypesCript called \"Gator\". It is part of the Backend path of Boot.dev course.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "tsx ./src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeonardoPasqualini/boot-dev-aggregator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeonardoPasqualini/boot-dev-aggregator/issues"
+  },
+  "homepage": "https://github.com/LeonardoPasqualini/boot-dev-aggregator#readme",
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
