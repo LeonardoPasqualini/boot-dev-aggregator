@@ -1,5 +1,14 @@
+import { Config, setUser, readConfig } from "./config.js";
+
+
 function main() {
-  console.log("Hello, world!");
+  let config: Config = {
+    dbUrl: "postgres://example"
+  }
+
+  setUser("Teste User", config);
+  console.log(readConfig());
+
 }
 
 main();
