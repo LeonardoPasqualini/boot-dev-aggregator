@@ -1,6 +1,7 @@
 import fs from "fs";
 import os from "os";
 import path from "path";
+import { exit } from "process";
 
 export type Config = {
   dbUrl: string,
@@ -8,14 +9,12 @@ export type Config = {
 }
 
 export function setUser(userName: string) {
-  const config: Config | null = readConfig();
-  if (config) {
-    config.currentUserName = userName;
-    writeConfig(config);
-  }
+  const config: Config = readConfig();
+  config.currentUserName = userName;
+  writeConfig(config);
 }
 
-export function readConfig(): Config | null {
+export function readConfig(): Config {
   const filePath = getConfigFilePath();
 
   const jsonConfig = fs.readFileSync(filePath, {encoding: 'utf-8'})
@@ -25,10 +24,12 @@ export function readConfig(): Config | null {
     return validateConfig(configObject);
 
   } catch (err) {
-    if (err) {
+     if (err instanceof SyntaxError) {
       console.log(`${err}: Trying to parce the config`);
+      exit(1);
     }
-    return null;
+    console.log(`Read configuration file failed: ${(err as Error).message}`);
+    exit(1);
   };
 }
 

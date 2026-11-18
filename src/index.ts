@@ -1,31 +1,32 @@
-import { exit } from "node:process";
 import { CommandsRegistry, registerCommand, runCommand } from "./commands/commandHandler.js";
 import { handlerLogin } from "./commands/login.js";
-import { readConfig } from "./config.js";
+import { handlerRegister, handlerReset, handlerUsers } from "./commands/users.js";
 
 
-function main() {
+async function main() {
   const commands: CommandsRegistry = {}
-  registerCommand(commands, "login", handlerLogin)
+  registerCommand(commands, "login", handlerLogin);
+  registerCommand(commands, "register", handlerRegister);
+  registerCommand(commands, "reset", handlerReset);
+  registerCommand(commands, "users", handlerUsers);
 
   const cleanArgs = process.argv.slice(2)
 
   if(cleanArgs.length === 0) {
     console.log("Not enough arguments were provided.");
-    exit(1);
+    process.exit(1);
   }
 
   const cmdName = cleanArgs[0];
   const args = cleanArgs.slice(1)
 
   try {
-    runCommand(commands, cmdName, ...args);
+    await runCommand(commands, cmdName, ...args);
   } catch (err) {
     console.log((err as Error).message);
-    exit(1);
+    process.exit(1);
   }
-
-  console.log(readConfig());
+  process.exit(0);
 
 }
 
