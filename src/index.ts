@@ -1,3 +1,4 @@
+import { handlerAgg } from "./commands/agg.js";
 import { CommandsRegistry, registerCommand, runCommand } from "./commands/commandHandler.js";
 import { handlerLogin } from "./commands/login.js";
 import { handlerRegister, handlerReset, handlerUsers } from "./commands/users.js";
@@ -9,6 +10,7 @@ async function main() {
   registerCommand(commands, "register", handlerRegister);
   registerCommand(commands, "reset", handlerReset);
   registerCommand(commands, "users", handlerUsers);
+  registerCommand(commands, "agg", handlerAgg);
 
   const cleanArgs = process.argv.slice(2)
 
