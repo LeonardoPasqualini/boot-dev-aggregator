@@ -8,6 +8,13 @@
       "when": 1794920506226,
       "tag": "0000_careless_jean_grey",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795517264758,
+      "tag": "0001_majestic_living_mummy",
+      "breakpoints": true
     }
   ]
 }
